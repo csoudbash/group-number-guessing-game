@@ -70,6 +70,10 @@ function renderGuessesToDom(newDomArray){
   $('#history').empty();
   for (let entry of newDomArray){
     console.log('This is the entry', entry);
+    //BEN AND ADAMS JQUERY HISTORY APPENDING TABLE HEADERS. ONCE PER ROUND
+    // $('#guessHead').append(`
+    // <th id="r${}"></th>
+    // `)
     for (let item of entry){
     $('#history').append(`
     <tr>
@@ -78,6 +82,38 @@ function renderGuessesToDom(newDomArray){
         <td>&nbsp;Guess Position: ${item.position}</td>
     </tr>
     `)
+    // BEN and Adams Guess History Appending thing
+    let roundIterator = 1;
+    switch (item.player){
+      case '1':
+        $('#p1-history').append(`
+        <td>
+        ${item.guess}
+        </td>
+        `);
+        break;
+      case '2':
+        $('#p2-history').append(`
+        <td>
+        ${item.guess}
+        </td>
+        `);
+        break;
+      case '3':
+        $('#p3-history').append(`
+        <td>
+        ${item.guess}
+        </td>
+        `);
+        break;
+      case '4':
+        $('#p4-history').append(`
+        <td>
+        ${item.guess}
+        </td>
+        `);
+        break;
+  }
   }
   }
   

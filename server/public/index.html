@@ -15,17 +15,38 @@
     <h1>Place your guesses below!</h1>
   <table>
     <tr>
-    <td>Player 1</td>
-    <td>Player 2</td>
-    <td>Player 3</td>
-    <td>Player 4</td>  
+      <thead>
+        <td></td>
+        <td id="r1"></td>
+      </thead>
     </tr>
-    <tr>
-    <td><input id="guess1" data-player="1" type="text" placeholder="Guess"></td>
-    <td><input id="guess2" data-player="2" type="text" placeholder="Guess"></td>
-    <td><input id="guess3" data-player="3"  type="text" placeholder="Guess"></td>
-    <td><input id="guess4" data-player="4" type="text" placeholder="Guess"></td>
+    <tr id="p1-history">
+      <td>Player 1</td>
+      <td><input id="guess1" data-player="1" type="number" placeholder="Guess"></td>
+      <td><span></span></td>
     </tr>
+    <tr id="p2-history">
+      <td>Player 2</td>
+      <td><input id="guess2" data-player="2" type="number" placeholder="Guess"></td>
+      <td><span></span></td>
+    </tr>
+    <tr id="p3-history">
+      <td>Player 3</td>
+      <td><input id="guess3" data-player="3"  type="number" placeholder="Guess"></td>
+      <td><span></span></td>
+    </tr>
+    <tr id="p4-history">
+      <td>Player 4</td>
+      <td><input id="guess4" data-player="4" type="number" placeholder="Guess"></td>
+      <td><span></span></td>
+    </tr> 
+    
+    <!-- <tr>
+    <td><input id="guess1" data-player="1" type="number" placeholder="Guess"></td>
+    <td><input id="guess2" data-player="2" type="number" placeholder="Guess"></td>
+    <td><input id="guess3" data-player="3"  type="number" placeholder="Guess"></td>
+    <td><input id="guess4" data-player="4" type="number" placeholder="Guess"></td>
+    </tr> -->
   </table>
 </div>
     <button type="button" id="addButton">Submit your Guesses!</button>
@@ -34,18 +55,22 @@
     <div class="guessHistory">
     <h2>Guess History</h2>
     <table id="history">
-      <!-- <tr>
-      <tr>Player 1</tr>
-      <tr>Player 2</tr>
-      <tr>Player 3</tr>
-      <tr>Player 4</tr>
+        <thead id="guessHead">
+          <th></th>
+          <th id="r1"></th>
+        </thead>
+      <tr id="p1-history">
+        <td>Player 1</td>
       </tr>
-      <tr>
-      <tr id="guessHistory1"></tr>
-      <tr id="guessHistory2"></tr>
-      <tr id="guessHistory3"></tr>
-      <tr id="guessHistory4"></tr>
-      </tr> -->
+      <tr id="p2-history">
+        <td>Player 2</td>
+      </tr>
+      <tr id="p3-history">
+        <td>Player 3</td>
+      </tr>
+      <tr id="p4-history">
+        <td>Player 4</td>
+      </tr>
     </table>
     </div>
   
@@ -61,7 +86,7 @@
         <tr>
         <td id="guessCounter1"></td>
         <td id="guessCounter2"></td>
-        <tr id="guessCounter3"></td>
+        <td id="guessCounter3"></td>
         <td id="guessCounter4"></td>
         </tr>
       </table>
