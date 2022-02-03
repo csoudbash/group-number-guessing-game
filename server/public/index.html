@@ -11,6 +11,49 @@
   <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
 </head>
 <body>
-    <h1>YOUR GAME HERE!</h1>
+  <div class id="guesss">
+    <h1>Place your guesses below!</h1>
+  <table>
+    <tr>
+    <td><input id="guess1" data-player="1" type="text" placeholder="Guess 1"></td>
+    <td><input id="guess2" data-player="2" type="text" placeholder="Guess 2"></td>
+    </tr>
+    <tr>
+    <td><input id="guess3" data-player="3"  type="text" placeholder="Guess 3"></td>
+    <td><input id="guess4" data-player="4" type="text" placeholder="Guess 4"></td>
+    </tr>
+  </table>
+</div>
+    <button type="button" id="addButton">Submit your Guesses!</button>
+    <button type="button" id="restartButton">Restart</button>
+
+    <div class="guessHistory">
+    <h2>Guess History</h2>
+    <table>
+      <tr>
+      <td id="guessHistory1"></td>
+      <td id="guessHistory2"></td>
+      </tr>
+      <tr>
+      <tr id="guessHistory3"></td>
+      <td id="guessHistory4"></td>
+      </tr>
+    </table>
+    </div>
+  
+    <div class="guessCounter">
+      <h2>Guess Counter</h2>
+      <table>
+        <tr>
+        <td id="guessCounter1"></td>
+        <td id="guessCounter2"></td>
+        </tr>
+        <tr>
+        <tr id="guessCounter3"></td>
+        <td id="guessCounter4"></td>
+        </tr>
+      </table>
+  </div>
+        
 </body>
 </html>
