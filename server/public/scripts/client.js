@@ -4,23 +4,6 @@ function handleReady() {
   console.log("jquery is loaded!")
   $('#addButton').on('click', addGuesses)
 }
-
-
-function getGuessList(){
-  $.ajax({
-    method: 'Get',
-    url: '/guesses'
-  }).then(function(response){
-    console.log('This is the response from the server for getGuessList',response);
-  }).catch(function(response){
-    
-  })
-}
-
-
-
-
-
 function addGuesses(){
   // builds array of objects with the current input values
   let guessesToAdd = [{
@@ -49,25 +32,53 @@ function addGuesses(){
     }
 }).then(function(){
     console.log('guesses added successfully');
-    renderGuessesToDom();
+    getGuessList();
 }).catch(function(response){
   console.log('It did not work :(', response);
   
-
 })
 $('#guess1').val('')
 $('#guess2').val('')
 $('#guess3').val('')
 $('#guess4').val('')
+// getGuessList();
 }
 
-function renderGuessesToDom(){
+
+// Makes AJAX get to get the array of player results with position value added. 
+function getGuessList(){
   $.ajax({
     method: 'GET',
-    url:'/guessResponse'
+    url: '/playerResults'
+
   }).then(function(response){
-    console.log('Get reponse',response);
+    console.log('This is the response from the server for /playerResults',response);
+    renderGuessesToDom(response); 
   }).catch(function(response){
-    console.log('It did not work :(', response); 
+    console.log('shucks scoob',response);
   })
+
+}
+
+
+
+
+
+
+function renderGuessesToDom(newDomArray){
+  console.log(newDomArray);
+  $('#history').empty();
+  for (let entry of newDomArray){
+    console.log('This is the entry', entry);
+    for (let item of entry){
+    $('#history').append(`
+    <tr>
+        <td>&nbsp;Player Name: ${item.player}</td>
+        <td>&nbsp;Player Guess: ${item.guess}</td>
+        <td>&nbsp;Guess Position: ${item.position}</td>
+    </tr>
+    `)
+  }
+  }
+  
 }
