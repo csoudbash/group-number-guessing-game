@@ -6,6 +6,7 @@ const PORT = 5000;
 let playerArray = require('./modules/playerArray');
 let playerResults = require('./modules/playerResults');
 const { post } = require('jquery');
+
 // This must be added before GET & POST routes.
 app.use(bodyParser.urlencoded({extended:true}))
 
@@ -31,6 +32,14 @@ app.post('/guesses',function (req, res){
   // playerUpdateArray(playerArray);
   playerResults.push(playerUpdateArray(playerArray));
   console.log(playerResults);
+})
+
+app.get('/restartGame',function(req,res){
+  console.log('inside  /restartGame');
+  restartGame();
+  console.log('restart game run playerResults', playerResults);
+  console.log('restart game run playerArray', playerArray);
+  res.send(playerResults);
 })
 
 // wait 
@@ -67,4 +76,9 @@ function playerUpdateArray(playerArray) {
     newResultsArray.push(newPlayerObject);
   }
   return newResultsArray;
+}
+
+function restartGame() {
+  playerResults = [];
+  playerArray = [];
 }

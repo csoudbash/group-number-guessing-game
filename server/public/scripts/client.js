@@ -3,6 +3,7 @@ $(document).ready(handleReady);
 function handleReady() {
   console.log("jquery is loaded!")
   $('#addButton').on('click', addGuesses)
+  $('#restartButton').on('click', restartGame);
 }
 function addGuesses(){
   // builds array of objects with the current input values
@@ -71,50 +72,91 @@ function renderGuessesToDom(newDomArray){
   for (let entry of newDomArray){
     console.log('This is the entry', entry);
     //BEN AND ADAMS JQUERY HISTORY APPENDING TABLE HEADERS. ONCE PER ROUND
+    //  DEPRECATED AS OF FRIDAY MORNING
     // $('#guessHead').append(`
-    // <th id="r${}"></th>
+    // <th id="r${newDomArray.length}"></th>
     // `)
     for (let item of entry){
     $('#history').append(`
     <tr>
-        <td>&nbsp;Player Name: ${item.player}</td>
-        <td>&nbsp;Player Guess: ${item.guess}</td>
-        <td>&nbsp;Guess Position: ${item.position}</td>
+        <td>Name: ${item.player}</td>
+        <td>Guess: ${item.guess}</td>
+        <td>Position: ${item.position}</td>
     </tr>
     `)
     // BEN and Adams Guess History Appending thing
-    let roundIterator = 1;
-    switch (item.player){
+    // DEPRECATED AS OF FRIDAY MORNING
+  //   let roundIterator = 1;
+  //   switch (item.player){
+  //     case '1':
+  //       $('#p1-history').append(`
+  //       <td>
+  //       ${item.guess}
+  //       </td>
+  //       `);
+  //       break;
+  //     case '2':
+  //       $('#p2-history').append(`
+  //       <td>
+  //       ${item.guess}
+  //       </td>
+  //       `);
+  //       break;
+  //     case '3':
+  //       $('#p3-history').append(`
+  //       <td>
+  //       ${item.guess}
+  //       </td>
+  //       `);
+  //       break;
+  //     case '4':
+  //       $('#p4-history').append(`
+  //       <td>
+  //       ${item.guess}
+  //       </td>
+  //       `);
+  //       break;
+  // }
+  }
+  }
+    $('.empty').empty();
+    for (let entry of newDomArray[newDomArray.length-1]) {
+    console.log(entry);
+      switch (entry.player){
       case '1':
-        $('#p1-history').append(`
-        <td>
-        ${item.guess}
-        </td>
-        `);
-        break;
-      case '2':
-        $('#p2-history').append(`
-        <td>
-        ${item.guess}
-        </td>
-        `);
-        break;
-      case '3':
-        $('#p3-history').append(`
-        <td>
-        ${item.guess}
-        </td>
-        `);
-        break;
-      case '4':
-        $('#p4-history').append(`
-        <td>
-        ${item.guess}
-        </td>
-        `);
-        break;
-  }
-  }
-  }
-  
+              $('#position1').append(`
+              Guest position: ${entry.position}
+              `);
+              break;
+            case '2':
+              $('#position2').append(`
+              Guest position: ${entry.position}
+              `);
+              break;
+            case '3':
+              $('#position3').append(`
+              Guest position: ${entry.position}
+              `);
+              break;
+            case '4':
+              $('#position4').append(`
+              Guest position: ${entry.position}
+              `);
+      }       
+    }
+
+
+
+}
+
+function restartGame(){
+  $.ajax({
+    method: 'GET',
+    url: '/restartGame'
+  }).then(function(response){
+    console.log('Game HAS BEEN RESET',response);
+    renderGuessesToDom(response);
+  }).catch(function(response){
+    console.log('DIDN\'T WORK? ',response);
+  })
 }
